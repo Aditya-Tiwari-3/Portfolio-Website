@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Aditya Tiwari — Portfolio</title>
+  <meta name="description" content="Aditya Tiwari | B.Tech CSE (AI & ML) student passionate about AI, ML, and emerging technologies." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f7f9;
+      --bg-accent: rgba(255,255,255,0.6);
+      --text: #0f1222;
+      --muted: #5e647a;
+      --primary: #6b8cff;
+      --card: rgba(255, 255, 255, 0.55);
+      --border: rgba(15,18,34,0.08);
+      --shadow: 0 8px 30px rgba(15,18,34,0.07);
+      --glass-blur: 14px;
+      --radius: 20px;
+      --gradient: radial-gradient(1200px 800px at 10% -10%, rgba(107,140,255,0.20), transparent 50%),
+                  radial-gradient(1000px 700px at 100% -10%, rgba(114,226,174,0.18), transparent 50%);
+    }
+    :root.dark {
+      --bg: #0b0e19;
+      --bg-accent: rgba(16,20,38,0.45);
+      --text: #f3f6ff;
+      --muted: #a0a6c0;
+      --primary: #8aa1ff;
+      --card: rgba(16, 20, 38, 0.45);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 40px rgba(0,0,0,0.35);
+      --gradient: radial-gradient(1200px 800px at 10% -10%, rgba(107,140,255,0.20), transparent 50%),
+                  radial-gradient(1000px 700px at 100% -10%, rgba(114,226,174,0.12), transparent 50%);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin:0; padding:0; overflow-x: hidden; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      background-image: var(--gradient);
+      background-attachment: fixed;
+      line-height: 1.55;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: var(--bg-accent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .nav-left {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex: 1;
+      min-width: 180px;
+    }
+    .brand { font-weight: 800; letter-spacing: 0.2px; white-space: nowrap;}
+    .tag {
+      font-size: 12px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      opacity: 0.85;
+      white-space: nowrap;
+    }
+    nav {
+      flex: 2;
+      min-width: 200px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      color: var(--text);
+      background: var(--bg-accent);
+    }
+    .nav-right {
+      flex: 1;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 180px;
+    }
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      border-radius: var(--radius);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(15,18,34,0.25);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+    .btn-glass {
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, var(--primary), rgba(107,140,255,0.75));
+      color: white;
+      border: none;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      padding: 48px 0 18px;
+    }
+    .avatar {
+      width: 140px; height: 140px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+    }
+    .avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      border-radius: 24px;
+    }
+    .avatar img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    .headline {
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.1;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .sub { color: var(--muted); margin: 2px 0 18px; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;
+    }
+    .meta .chip {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    section { padding: 28px 0; }
+    .section-title {
+      font-size: 18px; font-weight: 800; letter-spacing: 0.4px; margin: 0 0 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    .card { padding: 18px; }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .skills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center;
+    }
+    .skill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      font-weight: 600;
+      font-size: 13px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .skill:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(107,140,255,0.35);
+      background: rgba(107,140,255,0.15);
+    }
+    .timeline {
+      position: relative;
+      padding-left: 18px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: linear-gradient(var(--primary), transparent);
+      border-radius: 2px;
+    }
+    .t-item {
+      position: relative;
+      margin: 18px 0;
+      padding-left: 14px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .t-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(107,140,255,0.35);
+      background: rgba(107,140,255,0.1);
+    }
+    .t-item::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(107,140,255,0.25);
+    }
+    footer {
+      margin: 40px 0 60px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 20px 0 20px;
+      }
+      .avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 16px auto;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      nav a {
+        padding: 8px 14px;
+        font-size: 16px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .glass.card {
+        padding: 14px;
+      }
+      .skills {
+        justify-content: center;
+      }
+      .nav {
+        gap: 10px;
+      }
+    }
+
+    /* Extra responsive tweaks for mobile phones */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%;
+        padding: 0 8px;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 12px 0 10px;
+      }
+      .glass.card, .card, .avatar {
+        border-radius: 12px;
+        padding: 10px !important;
+      }
+      .headline {
+        font-size: 7vw;
+        text-align: center;
+      }
+      .sub, .meta, .skills {
+        text-align: center;
+        justify-content: center !important;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .col-4, .col-6, .col-12 {
+        grid-column: span 1 !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 8px;
+        padding: 6px 0;
+      }
+      header, .nav, .nav-left, .nav-right {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px;
+      }
+      .btn, .btn-glass, .btn-primary {
+        width: 100%;
+        justify-content: center;
+        font-size: 15px;
+        padding: 12px 0;
+        margin-bottom: 6px;
+      }
+      .timeline {
+        padding-left: 2px;
+      }
+      .t-item {
+        margin: 12px 0;
+        padding: 10px;
+      }
+    }
+
+    /* Ensure images do not overflow */
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="glass">
+    <div class="container nav">
+      <div class="nav-left">
+        <span class="brand">Aditya Tiwari</span>
+        <span class="tag">He/Him</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button class="btn btn-glass" id="themeToggle" aria-label="Toggle color theme">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v1"/><path d="M12 20v1"/><path d="M3 12h1"/><path d="M20 12h1"/><path d="M5.6 5.6l.7.7"/><path d="M17.7 17.7l.7.7"/><path d="M5.6 18.4l.7-.7"/><path d="M17.7 6.3l.7-.7"/><circle cx="12" cy="12" r="5"/>
+          </svg>
+          Theme
+        </button>
+        <a class="btn btn-primary" href="./Aditya-Tiwari-Resume.pdf" download>Résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="glass card col-6" style="grid-column: span 7;">
+        <div style="display:flex; gap:18px; align-items:center; flex-wrap: wrap;">
+          <div class="avatar" style="flex-shrink: 0;">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQHhyiFGwuucXg/profile-displayphoto-crop_800_800/B4DZjRaD1eGQAI-/0/1755859927390?e=1758758400&v=beta&t=G8FI77bzL1WBc1g7j6y-AD9J-LhyiwuEhTCP9dVOn_k" alt="Portrait of Aditya Tiwari" />
+          </div>
+          <div>
+            <h1 class="headline">B.Tech CSE (AI & ML) Student @ RGPV</h1>
+            <p class="sub">Passionate about Artificial Intelligence, Machine Learning & Emerging Tech • Katni, Madhya Pradesh, India</p>
+            <div class="meta">
+              <span class="chip">Lifelong Learner</span>
+              <span class="chip">Problem Solver</span>
+              <span class="chip">Technical Communication</span>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn btn-glass" href="#projects" style="display:none;">View Projects</a>
+              <a class="btn" style="border-color:transparent; background:transparent; text-decoration:underline;" href="#contact">Get in touch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <article class="glass card">
+        <p>
+          I am currently pursuing my <strong>B.Tech in Computer Science & Engineering (AI & ML)</strong> at <strong>RGPV, Bhopal</strong>. With a strong academic foundation and deep curiosity for technology, I am fascinated by how Artificial Intelligence, Machine Learning, and Generative AI are reshaping the future of innovation.
+        </p>
+        <p>
+          My journey in tech began early, discovering the joy of problem‑solving and programming. Over time, that curiosity evolved into a passion for building intelligent systems that solve real‑world challenges. I believe in <strong>learning by doing</strong> — hands‑on projects, exploring new tools, and engaging with the AI/ML community.
+        </p>
+        <p>
+          <em>Areas of Interest:</em> Artificial Intelligence • Machine Learning • Generative AI • Programming • Emerging Tech
+        </p>
+      </article>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Top Skills</h2>
+      <div class="glass card">
+        <div class="skills" aria-label="Skills list">
+          <span class="skill">Problem Solving</span>
+          <span class="skill">Curiosity for Emerging Tech</span>
+          <span class="skill">Self-Learning</span>
+          <span class="skill">Adaptability</span>
+          <span class="skill">Technical Communication</span>
+          <span class="skill">Python</span>
+          <span class="skill">C++</span>
+          <span class="skill">Java</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="grid">
+        <div class="glass card col-6">
+          <h3>School of Information Technology (RGPV)</h3>
+          <p class="muted">B.Tech — Computer Science (AI & ML) • Aug 2025 — Aug 2029</p>
+          <div class="timeline">
+            <div class="t-item">
+              <strong>Focus</strong>
+              <div class="muted">Data Structures, Algorithms, DBMS, OS</div>
+            </div>
+            <div class="t-item">
+              <strong>AI/ML</strong>
+              <div class="muted">Neural Networks, Deep Learning, Generative AI</div>
+            </div>
+            <div class="t-item">
+              <strong>Beyond Academics</strong>
+              <div class="muted">Hackathons, research, collaborative projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass card col-6">
+          <h3>Kendriya Vidyalaya (Class XII)</h3>
+          <p class="muted">Computer Science • Mar 2023 — Apr 2025 • Grade: 93%</p>
+          <ul class="muted" style="margin: 8px 0 0 16px;">
+            <li>Served as Head Boy; gaining leadership and teamwork experience.</li>
+            <li>Topper - Science stream (Class 12)</li>
+            <li>Represented school in inter-school competitions and debates.</li>
+            <li>Organized and hosted academic and cultural events.</li>
+            <li>Mentored juniors in studies and extracurriculars.</li>
+            <li>Recognized for leadership, discipline, and academic excellence.</li>
+          </ul>
+          <p style="margin-top: 12px;" class="muted">
+            During my school years, I balanced academics, leadership, and extracurriculars while also building a foundation in technology. Alongside leadership roles and competitions, I developed an early interest in programming and began learning Python, which sparked my journey into problem-solving and technology.
+          </p>
+        </div>
+        <div class="glass card col-6" style="margin-top: 16px;">
+          <h3>Kendriya Vidyalaya (Class X)</h3>
+          <p class="muted">Mar 2022 — Mar 2023 • Grade: 95.2%</p>
+          <ul class="muted" style="margin: 8px 0 0 16px;">
+            <li>Rajya Puraskar, Bharat Scouts and Guides – Awarded for leadership, service, and discipline.</li>
+            <li>State-Level Chess Competitor – Honed strategic thinking and problem-solving skills.</li>
+            <li>NCSC Participant – Presented a scientific project at the national level.</li>
+            <li>Self-Learner in Coding – Explored Python, Java, and AI through independent projects.</li>
+            <li>B.Tech in CSE – Pursuing a degree with a focus on technology and innovation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="glass card">
+        <p class="muted">Open to connecting with professionals, mentors, and fellow learners who share a vision of harnessing technology for impact.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px;">
+          <a class="btn btn-primary" href="mailto:YOUR_EMAIL@example.com" aria-label="Email">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z"/>
+              <path d="M22 6l-10 7L2 6"/>
+            </svg>
+            Email
+          </a>
+          <a class="btn btn-glass" href="https://www.linkedin.com/in/aditya-tiwari-b476a3360/" target="_blank" aria-label="LinkedIn">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a class="btn btn-glass" href="https://github.com/Aditya-Tiwari-3" target="_blank" aria-label="GitHub">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3 0 6-1.4 6-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.5 12.5 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 10.5c0 4.6 3 6 6 6-.4.3-.7.9-.8 1.7-.7.3-2.4.9-3.4-1.1"/>
+            </svg>
+            GitHub
+          </a>
+          <a class="btn" href="./Aditya-Tiwari-Resume.pdf" download aria-label="Resume download">Download Résumé</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      ©️ <span id="year"></span> Aditya Tiwari • Built with minimal, accessible HTML/CSS/JS
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) root.classList.add('dark');
+
+    function setTheme(mode){
+      if(mode==='dark'){
+        root.classList.add('dark');
+        localStorage.setItem('theme','dark');
+      } else {
+        root.classList.remove('dark');
+        localStorage.setItem('theme','light');
+      }
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = root.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
